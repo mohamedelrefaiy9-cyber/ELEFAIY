@@ -1,0 +1,26 @@
+{
+ "name": "نظام إدارة صالة البلاي ستيشن",
+ "short_name": "صالة PS",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "any",
+ "dir": "rtl",
+ "lang": "ar",
+ "background_color": "#080c18",
+ "theme_color": "#080c18",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
