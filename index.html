@@ -331,6 +331,9 @@ var _vdF=vDash;vDash=function(){const t0=dayStart(Date.now());let f=null;
  S.devices.forEach(d=>{const a=d.active;if(a&&a.start>=t0&&(!f||a.start<f.t))f={t:a.start,n:d.name}});
  const box=`<div class="box stat"><span>أول جلسة بدأت اليوم</span><b>${f?new Date(f.t).toLocaleTimeString('ar-EG',{hour:'numeric',minute:'2-digit'}):'—'}</b><span>${f?esc(f.n):'لسه مفيش جلسات'}</span></div>`;
  return _vdF().replace('<div class="stats">','<div class="stats">'+box)};
+/* ===== lounge name header above the toolbar ===== */
+(function(){const s=document.createElement('style');s.textContent='#hdr{padding:16px 16px 8px;text-align:center}#hdr h1{margin:0;font-size:26px;font-weight:800;line-height:1.35;color:var(--tx);text-shadow:0 0 18px color-mix(in srgb,var(--ac) 45%,transparent)}#hdr h1 small{display:block;font-size:13px;font-weight:400;color:var(--ac);text-shadow:none}nav{justify-content:safe center}@media(max-width:760px){#hdr{padding:12px 12px 6px}#hdr h1{font-size:20px}}';document.head.appendChild(s)})();
+var _rHd=render;render=function(){_rHd();const h1=document.querySelector('#nav h1');let hd=document.getElementById('hdr');if(!hd){hd=document.createElement('header');hd.id='hdr';document.body.insertBefore(hd,document.getElementById('nav'))}if(h1){hd.innerHTML='';hd.appendChild(h1)}};
 render();
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
