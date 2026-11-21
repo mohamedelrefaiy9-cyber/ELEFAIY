@@ -325,6 +325,12 @@ var _n3=pauseS;pauseS=function(id){_n3(id);nSync(id)};
 var _n4=moveTo;moveTo=function(a,b){_n4(a,b);nSync(a);nSync(b)};
 var _n5=finish;finish=function(){const id=ck&&ck.id;_n5();if(id)nSync(id)};
 function ntfyBox(){return`<h2 style="margin-top:22px">📲 تنبيه يوصل والموبايل نايم (ntfy)</h2><div class="box"><p style="margin:0 0 8px;color:var(--mt);font-size:13px">١) نزّل تطبيق ntfy المجاني من متجر الموبايل. ٢) اشترك (Subscribe) فيه بنفس اسم القناة تحت. ٣) في إعدادات التطبيق اسمح بالإشعارات وخلّي أولوية التنبيه عالية. بعدها كل جلسة بوقت محدد بتبعت تنبيهها مقدماً، ويوصل حتى لو البرنامج مقفول أو الجهاز نايم.</p><label style="margin-top:0">اسم القناة (سري، استخدم اسماً طويلاً مش متوقع)</label><div style="display:flex;gap:8px;flex-wrap:wrap"><input id="ntf" dir="ltr" value="${esc(S.ntfy||'')}" style="flex:1;min-width:180px" placeholder="مثال: psl-x7k2m9q4"><button class="btn" onclick="ntf.value='psl-'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,6)">اسم عشوائي</button></div><div class="acts"><button class="btn g" onclick="S.ntfy=ntf.value.trim();save();toast('تم الحفظ')">حفظ</button><button class="btn" onclick="S.ntfy=ntf.value.trim();save();nSend('test'+Date.now(),'🔔 تجربة تنبيه من صالة PS',0);toast('اتبعت تنبيه تجريبي')">إرسال تجربة</button></div></div>`}
+/* ===== first session of the day on dashboard ===== */
+var _vdF=vDash;vDash=function(){const t0=dayStart(Date.now());let f=null;
+ S.history.forEach(h=>{if(h.type!=='sale'&&h.start>=t0&&(!f||h.start<f.t))f={t:h.start,n:h.dev}});
+ S.devices.forEach(d=>{const a=d.active;if(a&&a.start>=t0&&(!f||a.start<f.t))f={t:a.start,n:d.name}});
+ const box=`<div class="box stat"><span>أول جلسة بدأت اليوم</span><b>${f?new Date(f.t).toLocaleTimeString('ar-EG',{hour:'numeric',minute:'2-digit'}):'—'}</b><span>${f?esc(f.n):'لسه مفيش جلسات'}</span></div>`;
+ return _vdF().replace('<div class="stats">','<div class="stats">'+box)};
 render();
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
